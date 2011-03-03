@@ -3,10 +3,10 @@
 class GeoHelper extends WXHelpers{
   
   public function geo_locate($address, $key){
-    $curl = new WaxBackgroundCurl;
     $glocal_search_url = "http://www.google.com/uds/GlocalSearch?hl=en&gss=.com&v=1.0&key=".$key;
     $url = $glocal_search_url . "&q=".urlencode($address.", uk");
-    $res = json_decode($curl->fetch($url),1);
+    $curl = new WaxBackgroundCurl(array('url'=>$url));
+    $res = json_decode($curl->fetch(),1);
     if(($lng = $res['responseData']['results'][0]['lng']) && ($lat = $res['responseData']['results'][0]['lat'])) return array('lat'=>$lat, 'lng'=>$lng);
     else return false;
   }
