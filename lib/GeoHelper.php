@@ -2,7 +2,17 @@
 
 class GeoHelper extends WXHelpers{
   
+  public function looks_like_coords($check){
+    if(strstr($check, ",")){
+      if(($split = explode(",", $check)) && count($split) == 2){
+        if(is_numeric($split[0]) && is_numeric($split[1])) return array('lat'=>$split[0], 'lng'=>$split[1]);
+      }
+    }
+    return false;
+  }
+  
   public function geo_locate($address, $key){
+    if($res = looks_like_coords($address)) return $res;
     $glocal_search_url = "http://www.google.com/uds/GlocalSearch?hl=en&gss=.com&v=1.0&key=".$key;
     $url = $glocal_search_url . "&q=".urlencode($address.", uk");
     $curl = new WaxBackgroundCurl(array('url'=>$url));
