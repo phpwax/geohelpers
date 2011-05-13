@@ -22,7 +22,7 @@ class GeoHelper extends WXHelpers{
   }
   
   public function os_grid_to_lat_lng($easting, $northing){
-    include_once GEO_DIR."coords.php";
+    include_once GEO_DIR."lib/coords.php";
     $os = new OSRef($easting, $northing);
     $ll = $os->toLatLng();
     $ll->OSGB36ToWGS84();
@@ -30,7 +30,7 @@ class GeoHelper extends WXHelpers{
   }
   
   public function bounding_box($lat, $lng, $distance_in_miles=0.5){
-    include_once GEO_DIR."coords.php";
+    include_once GEO_DIR."lib/coords.php";
     $ll = new LatLng($lat,$lng);
     return $ll->getBoundingBox($lat,$lng,$distance_in_miles);
   }
