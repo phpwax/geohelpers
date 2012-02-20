@@ -45,6 +45,19 @@ class GeoHelper extends WXHelpers{
     if($a['distance'] == $b['distance']) return 0;
     return ($a['distance'] < $b['distance']) ? -1 : 1;
   }
+  
+  public function distance_time($lat1, $lon1, $lat2, $lon2, $unit="car") {
+
+    $theta = $lon1 - $lon2;
+    $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+    $dist = acos($dist);
+    $dist = rad2deg($dist);
+    $miles = $dist * 60 * 1.1515;
+    $unit = strtolower($unit);
+
+    if($unit == "foot") return round(($miles / 2.5)*60). " min";
+    else return round(($miles / 25)*60). " min";
+  }
 }
 
 ?>
