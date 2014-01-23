@@ -17,7 +17,10 @@ class GeoHelper extends WXHelpers{
     $url = $glocal_search_url . "&address=".urlencode($address.", uk");
     $curl = new WaxBackgroundCurl(array('url'=>$url));
     $res = json_decode($curl->fetch(),1);
-    if(($lng = $res['results'][0]['geometry']['location']['lat']) && ($lat = $res['results'][0]['geometry']['location']['lat'] )) return array('lat'=>$lat, 'lng'=>$lng);
+
+    if(($res = $res['results'][0]) && ($lng = $res['geometry']['location']['lng']) && ($lat = $res['geometry']['location']['lat'] )){
+      return array('lat'=>$lat, 'lng'=>$lng);
+    }
     else return false;
   }
 
