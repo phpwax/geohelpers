@@ -1,5 +1,3 @@
-<?
-/**
- * THIS PLUGIN RELIES ON BACKGROUND CACHE PLUGIN
- */
-?>
+<?php
+
+AutoLoader::add_plugin_setup_script(__DIR__."/setup.php");
