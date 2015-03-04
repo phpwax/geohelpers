@@ -1,0 +1,20 @@
+{
+    "name": "phpwax/geohelpers",
+    "authors": [
+        {
+            "name": "Charles Marshall",
+            "email": "charles@oneblackbear.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "phpwax/phpwax": "7.1.*",
+    },
+    "license": "MIT",
+    "autoload": {
+      "classmap": [
+        "lib/"
+      ],
+      "files": ["ini.php"]
+    }
+}
