@@ -8,7 +8,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "phpwax/phpwax": "7.1.*",
+        "phpwax/phpwax": "7.1.*"
     },
     "license": "MIT",
     "autoload": {
