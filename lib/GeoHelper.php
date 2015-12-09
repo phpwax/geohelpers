@@ -18,6 +18,9 @@ class GeoHelper extends WXHelpers{
     $curl = new WaxBackgroundCurl(array('url'=>$url));
     $res = json_decode($curl->fetch(),1);
 
+    if($res['status'] != "OK"){
+      WaxLog::log("error",$res['status']."\n".print_r($res,1),"geocoder");
+    }
     if(($res = $res['results'][0]) && ($lng = $res['geometry']['location']['lng']) && ($lat = $res['geometry']['location']['lat'] )){
       return array('lat'=>$lat, 'lng'=>$lng);
     }
