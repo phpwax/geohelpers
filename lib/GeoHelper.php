@@ -14,7 +14,7 @@ class GeoHelper extends WXHelpers{
   public function geo_locate($address, $key){
     if($res = looks_like_coords($address)) return $res;
     $glocal_search_url = "https://maps.googleapis.com/maps/api/geocode/json?key=".$key;
-    $url = $glocal_search_url . "&address=".urlencode($address)."&region=GB";
+    $url = $glocal_search_url . "&address=".urlencode($address)."&components=country:GB";
     $curl = new WaxBackgroundCurl(array('url'=>$url));
     $res = json_decode($curl->fetch(),1);
 
