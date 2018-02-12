@@ -14,10 +14,9 @@ class GeoHelper extends WXHelpers{
   public function geo_locate($address, $key){
     if($res = looks_like_coords($address)) return $res;
     $glocal_search_url = "https://maps.googleapis.com/maps/api/geocode/json?key=".$key;
-    $url = $glocal_search_url . "&address=".urlencode($address)."&components=region:GB";
+    $url = $glocal_search_url . "&address=".urlencode($address)."&bounds=48.5,-9.0|62.5,2.0&region=GB";
     $curl = new WaxBackgroundCurl(array('url'=>$url));
     $res = json_decode($curl->fetch(),1);
-
     if($res['status'] != "OK"){
       WaxLog::log("error",$res['status']."\n".print_r($res,1),"geocoder");
     }
